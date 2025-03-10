@@ -12,47 +12,47 @@ interface ActionButtonsProps {
 }
 
 const ActionButtons = ({
-  onShare = () => console.log("تمت مشاركة النتائج"),
-  onRegenerate = () => console.log("إعادة توليد الاقتراحات"),
-  onDownload = () => console.log("تم تنزيل النتائج"),
+  onShare = () => {},
+  onRegenerate = () => {},
+  onDownload = () => {},
   className = "",
   isLoading = false,
 }: ActionButtonsProps) => {
   return (
     <div
       className={cn(
-        "w-full flex justify-center gap-4 py-4 bg-white",
+        "w-full flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 py-3 sm:py-4 bg-white",
         className,
       )}
       dir="rtl"
     >
       <Button
-        variant="outline"
-        className="flex items-center gap-2 rounded-lg"
-        onClick={onShare}
-        disabled={isLoading}
-      >
-        <Share2 className="h-4 w-4" />
-        <span>مشاركة النتائج</span>
-      </Button>
-
-      <Button
-        className="flex items-center gap-2 rounded-lg bg-primary text-white"
+        className="flex items-center gap-2 rounded-lg bg-blue-600 text-white order-2 sm:order-none"
         onClick={onRegenerate}
         disabled={isLoading}
       >
         <RefreshCw className={cn("h-4 w-4", isLoading && "animate-spin")} />
-        <span>{isLoading ? "جاري التوليد..." : "إعادة توليد الاقتراحات"}</span>
+        <span>{isLoading ? "جاري التوليد..." : "إعادة توليد"}</span>
+      </Button>
+
+      <Button
+        variant="outline"
+        className="flex items-center gap-2 rounded-lg text-sm sm:text-base"
+        onClick={onShare}
+        disabled={isLoading}
+      >
+        <Share2 className="h-4 w-4" />
+        <span>مشاركة</span>
       </Button>
 
       <Button
         variant="secondary"
-        className="flex items-center gap-2 rounded-lg"
+        className="flex items-center gap-2 rounded-lg text-sm sm:text-base"
         onClick={onDownload}
         disabled={isLoading}
       >
         <Download className="h-4 w-4" />
-        <span>تنزيل النتائج</span>
+        <span>تنزيل</span>
       </Button>
     </div>
   );

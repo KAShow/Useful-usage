@@ -112,11 +112,11 @@ const CreativeUsesGrid = ({
 }: CreativeUsesGridProps) => {
   if (isLoading) {
     return (
-      <div className="w-full max-w-[1200px] h-[400px] bg-white flex flex-col items-center justify-center p-6 rounded-lg shadow-sm">
-        <div className="animate-spin mb-4">
-          <RefreshCw className="h-10 w-10 text-primary-400" />
+      <div className="w-full max-w-[1200px] h-[300px] sm:h-[400px] bg-white flex flex-col items-center justify-center p-4 sm:p-6 rounded-lg shadow-sm">
+        <div className="animate-spin mb-3 sm:mb-4">
+          <RefreshCw className="h-8 w-8 sm:h-10 sm:w-10 text-blue-400" />
         </div>
-        <p className="text-lg text-gray-600 text-center" dir="rtl">
+        <p className="text-base sm:text-lg text-gray-600 text-center" dir="rtl">
           جاري توليد استخدامات إبداعية لـ {toolName}...
         </p>
       </div>
@@ -125,8 +125,8 @@ const CreativeUsesGrid = ({
 
   if (!uses.length) {
     return (
-      <div className="w-full max-w-[1200px] h-[400px] bg-white flex flex-col items-center justify-center p-6 rounded-lg shadow-sm">
-        <p className="text-lg text-gray-600 text-center mb-4" dir="rtl">
+      <div className="w-full max-w-[1200px] h-[300px] sm:h-[400px] bg-white flex flex-col items-center justify-center p-4 sm:p-6 rounded-lg shadow-sm">
+        <p className="text-base sm:text-lg text-gray-600 text-center mb-3 sm:mb-4" dir="rtl">
           لم يتم العثور على استخدامات إبداعية لـ {toolName}
         </p>
         <Button onClick={onRegenerateAll} className="gap-2" dir="rtl">
@@ -138,21 +138,21 @@ const CreativeUsesGrid = ({
   }
 
   return (
-    <div className="w-full max-w-[1200px] bg-white p-8 rounded-lg shadow-sm">
-      <div className="mb-6 flex justify-between items-center" dir="rtl">
-        <h2 className="text-2xl font-bold text-primary-800">استخدامات إبداعية لـ {toolName}</h2>
+    <div className="w-full max-w-[1200px] bg-white p-4 sm:p-8 rounded-lg shadow-sm">
+      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row justify-between items-center gap-3" dir="rtl">
+        <h2 className="text-xl sm:text-2xl font-bold text-blue-800">استخدامات إبداعية لـ {toolName}</h2>
         <Button
           variant="outline"
           onClick={onRegenerateAll}
-          className="gap-2 hover:bg-primary-50"
+          className="gap-2 hover:bg-blue-50 text-sm sm:text-base w-full sm:w-auto"
           dir="rtl"
         >
-          <RefreshCw className="h-4 w-4" />
+          <RefreshCw className="h-3 w-3 sm:h-4 sm:w-4" />
           توليد استخدامات جديدة
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6">
         {uses.map((use) => (
           <CreativeUseCard
             key={use.id}

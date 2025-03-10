@@ -21,10 +21,10 @@ const CreativeUseCard = ({
   const cleanTitle = title.replace(/\*\*/g, '');
   
   return (
-    <Card className="overflow-hidden transition-all hover:shadow-md bg-white border-none shadow-sm">
-      <CardContent className="p-6">
-        <h3 className="text-xl font-bold mb-3 text-primary-700">{cleanTitle}</h3>
-        <p className="text-gray-700 leading-relaxed text-right">{description}</p>
+    <Card className="overflow-hidden transition-all hover:shadow-md bg-white border border-gray-100 shadow-sm rounded-lg">
+      <CardContent className="p-4 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-blue-700">{cleanTitle}</h3>
+        <p className="text-sm sm:text-base text-gray-700 leading-relaxed text-right">{description}</p>
       </CardContent>
     </Card>
   );
