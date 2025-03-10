@@ -7,7 +7,7 @@ interface CreativeUse {
   id: string;
   title: string;
   description: string;
-  imageUrl: string;
+  imageUrl?: string;
 }
 
 interface CreativeUsesGridProps {
@@ -105,16 +105,16 @@ const CreativeUsesGrid = ({
     },
   ],
   isLoading = false,
-  onRegenerateAll = () => console.log("إعادة توليد جميع الاستخدامات"),
-  onShareUse = (id) => console.log(`تمت مشاركة الاستخدام رقم ${id}`),
-  onRegenerateUse = (id) => console.log(`إعادة توليد الاستخدام رقم ${id}`),
-  onLikeUse = (id) => console.log(`تم الإعجاب بالاستخدام رقم ${id}`),
+  onRegenerateAll = () => {},
+  onShareUse = () => {},
+  onRegenerateUse = () => {},
+  onLikeUse = () => {},
 }: CreativeUsesGridProps) => {
   if (isLoading) {
     return (
-      <div className="w-full max-w-[1200px] h-[500px] bg-gray-50 flex flex-col items-center justify-center p-6 rounded-lg">
+      <div className="w-full max-w-[1200px] h-[400px] bg-white flex flex-col items-center justify-center p-6 rounded-lg shadow-sm">
         <div className="animate-spin mb-4">
-          <RefreshCw className="h-10 w-10 text-gray-400" />
+          <RefreshCw className="h-10 w-10 text-primary-400" />
         </div>
         <p className="text-lg text-gray-600 text-center" dir="rtl">
           جاري توليد استخدامات إبداعية لـ {toolName}...
@@ -125,7 +125,7 @@ const CreativeUsesGrid = ({
 
   if (!uses.length) {
     return (
-      <div className="w-full max-w-[1200px] h-[500px] bg-gray-50 flex flex-col items-center justify-center p-6 rounded-lg">
+      <div className="w-full max-w-[1200px] h-[400px] bg-white flex flex-col items-center justify-center p-6 rounded-lg shadow-sm">
         <p className="text-lg text-gray-600 text-center mb-4" dir="rtl">
           لم يتم العثور على استخدامات إبداعية لـ {toolName}
         </p>
@@ -138,13 +138,13 @@ const CreativeUsesGrid = ({
   }
 
   return (
-    <div className="w-full max-w-[1200px] bg-gray-50 p-6 rounded-lg">
-      <div className="mb-4 flex justify-between items-center" dir="rtl">
-        <h2 className="text-xl font-bold">استخدامات إبداعية لـ {toolName}</h2>
+    <div className="w-full max-w-[1200px] bg-white p-8 rounded-lg shadow-sm">
+      <div className="mb-6 flex justify-between items-center" dir="rtl">
+        <h2 className="text-2xl font-bold text-primary-800">استخدامات إبداعية لـ {toolName}</h2>
         <Button
           variant="outline"
           onClick={onRegenerateAll}
-          className="gap-2"
+          className="gap-2 hover:bg-primary-50"
           dir="rtl"
         >
           <RefreshCw className="h-4 w-4" />
@@ -152,13 +152,12 @@ const CreativeUsesGrid = ({
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {uses.map((use) => (
           <CreativeUseCard
             key={use.id}
             title={use.title}
             description={use.description}
-            imageUrl={use.imageUrl}
             onShare={() => onShareUse(use.id)}
             onRegenerate={() => onRegenerateUse(use.id)}
             onLike={() => onLikeUse(use.id)}
